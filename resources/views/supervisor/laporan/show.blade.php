@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-body table-responsive">
+            <div class="card-body">
                 <table class="table table-bordered">
                     <tr><th>No. Laporan</th><td>{{ $laporan->nomor_laporan }}</td></tr>
                     <tr><th>Lokasi</th><td>{{ $laporan->lokasi->nama_lokasi }}</td></tr>
@@ -30,8 +30,9 @@
         </div>
         <div class="card">
             <div class="card-header"><h3 class="card-title">Daftar Temuan</h3></div>
-            <div class="card-body table-responsive">
-                <table class="table table-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive" style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100vw;">
+                <table class="table table-sm" style="min-width:650px;">
                     <thead><tr><th>Kode</th><th>Judul</th><th>Risiko</th><th>Status</th><th>Aksi</th></tr></thead>
                     <tbody>
                     @forelse($laporan->temuans as $temuan)
@@ -47,6 +48,7 @@
                     @endforelse
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>

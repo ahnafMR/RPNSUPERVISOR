@@ -374,11 +374,19 @@
 <script>
 $(document).ready(function () {
     // ── DataTables ──────────────────────────────────────────
-    $('.datatable').DataTable({
-        responsive: true,
-        language: { url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/id.json' },
-        dom: '<"row align-items-center mb-3"<"col-sm-6"l><"col-sm-6 text-right"f>>rtip',
+    $('.datatable').each(function() {
+        $(this).DataTable({
+            responsive: false,
+            language: { url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/id.json' },
+            dom: '<"row align-items-center mb-3"<"col-sm-6"l><"col-sm-6 text-right"f>>rtip',
+            scrollX: true
+        });
     });
+
+    // Destroy responsive if accidentally loaded
+    if ($.fn.dataTable && $.fn.dataTable.Responsive) {
+        $('.datatable').DataTable().responsive && $('.datatable').DataTable().responsive.destroy();
+    }
 
     // ── Auto-dismiss alerts ──────────────────────────────────
     setTimeout(function () {
@@ -391,12 +399,9 @@ $(document).ready(function () {
 
     $('#sidebarToggle').on('click', function (e) {
         if (isMobile()) {
-            e.preventDefault();
-            e.stopPropagation();
             $('body').toggleClass('sidebar-open');
+            return false;
         }
-        // Desktop: AdminLTE pushmenu fires naturally via data-widget="pushmenu"
-        // but we removed that attribute to avoid conflicts — re-attach it here.
     });
 
     // Close sidebar when overlay is tapped
