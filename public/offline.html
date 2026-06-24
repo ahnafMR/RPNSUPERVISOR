@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4e73df">
+  <title>Offline — RPN Supervisor</title>
+  <link rel="icon" href="/icons/icon-96x96.png">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #e0e5ec;
+      --dark: #a3b1c6;
+      --light: #ffffff;
+      --accent: #4e73df;
+      --text: #31354e;
+      --muted: #6b7a99;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: var(--bg);
+      border-radius: 24px;
+      box-shadow: 10px 10px 28px var(--dark), -10px -10px 28px var(--light);
+      padding: 48px 40px;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    .icon-wrap {
+      width: 80px; height: 80px;
+      border-radius: 20px;
+      background: var(--bg);
+      box-shadow: 6px 6px 14px var(--dark), -6px -6px 14px var(--light);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      font-size: 2rem;
+    }
+    h1 {
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--text); margin-bottom: 10px;
+    }
+    p {
+      font-size: .9rem; color: var(--muted);
+      line-height: 1.6; margin-bottom: 32px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #4e73df, #3a57c7);
+      color: #fff; border: none; border-radius: 12px;
+      padding: 12px 28px; font-size: .9rem; font-weight: 600;
+      cursor: pointer;
+      box-shadow: 4px 4px 12px rgba(78,115,223,0.4);
+      transition: all .2s ease;
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 6px 6px 16px rgba(78,115,223,0.5); }
+    .status {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .75rem; color: var(--muted);
+      background: var(--bg);
+      border-radius: 20px; padding: 6px 14px; margin-top: 20px;
+      box-shadow: inset 3px 3px 6px var(--dark), inset -3px -3px 6px var(--light);
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #e74a3b;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon-wrap">📡</div>
+    <h1>Tidak Ada Koneksi</h1>
+    <p>
+      Halaman ini tidak tersedia secara offline.<br>
+      Periksa koneksi internet Anda dan coba lagi.
+    </p>
+    <button class="btn" onclick="window.location.reload()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+        <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+      </svg>
+      Coba Lagi
+    </button>
+    <div class="status">
+      <div class="dot"></div>
+      Sedang Offline
+    </div>
+  </div>
+
+  <script>
+    // Auto-reload when connection is restored
+    window.addEventListener('online', () => window.location.reload());
+  </script>
+</body>
+</html>
