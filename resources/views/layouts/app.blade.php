@@ -99,13 +99,13 @@
                 </a>
             </li>
 
-            {{-- PWA Install button (hidden until prompt available) --}}
-            <li class="nav-item d-none d-md-flex align-items-center mr-2">
-                <button id="pwa-install-btn" title="Install Aplikasi">
-                    <i class="fas fa-download"></i>
-                    Install App
-                </button>
-            </li>
+{{-- PWA Install button (hidden - only show on login/dashboard) --}}
+             <li class="nav-item d-none align-items-center mr-2" style="display:none !important;">
+                 <button id="pwa-install-btn" title="Install Aplikasi">
+                     <i class="fas fa-download"></i>
+                     Install App
+                 </button>
+             </li>
 
             {{-- User dropdown --}}
             <li class="nav-item dropdown">
@@ -338,13 +338,13 @@
 
     </nav>
 
-    {{-- PWA floating install button (mobile, above bottom nav) --}}
-    <div class="pwa-install-wrap" id="pwaInstallWrap">
-        <button id="pwa-install-btn" title="Install Aplikasi">
-            <i class="fas fa-download"></i>
-            Install Aplikasi
-        </button>
-    </div>
+{{-- PWA floating install button (hidden - PWA install only on login/dashboard) --}}
+     <div class="pwa-install-wrap" id="pwaInstallWrap" style="display:none !important;">
+         <button id="pwa-install-btn" title="Install Aplikasi">
+             <i class="fas fa-download"></i>
+             Install Aplikasi
+         </button>
+     </div>
     {{-- ===================== /MOBILE BOTTOM NAVIGATION ===================== --}}
 
     {{-- ── Floating WhatsApp Support Button (always visible) ── --}}
@@ -427,57 +427,23 @@ $(document).ready(function () {
 
 @stack('scripts')
 
-<!-- ── PWA: Service Worker + Install Prompt ── -->
-<script>
-(function () {
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-            navigator.serviceWorker
-                .register('/sw.js', { scope: '/' })
-                .then(function (reg) {
-                    console.log('[SW] Registered:', reg.scope);
-                })
-                .catch(function (err) {
-                    console.warn('[SW] Registration failed:', err);
-                });
-        });
-    }
-
-    // Capture install prompt
-    var deferredPrompt = null;
-    var installBtns    = document.querySelectorAll('#pwa-install-btn');
-    var installWrap    = document.getElementById('pwaInstallWrap');
-
-    window.addEventListener('beforeinstallprompt', function (e) {
-        e.preventDefault();
-        deferredPrompt = e;
-        installBtns.forEach(function (btn) { btn.style.display = 'flex'; });
-        if (installWrap) installWrap.style.display = 'block';
-    });
-
-    installBtns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            if (!deferredPrompt) return;
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then(function (choice) {
-                if (choice.outcome === 'accepted') {
-                    console.log('[PWA] Installed');
-                }
-                deferredPrompt = null;
-                installBtns.forEach(function (b) { b.style.display = 'none'; });
-                if (installWrap) installWrap.style.display = 'none';
-            });
-        });
-    });
-
-    window.addEventListener('appinstalled', function () {
-        installBtns.forEach(function (b) { b.style.display = 'none'; });
-        if (installWrap) installWrap.style.display = 'none';
-        deferredPrompt = null;
-        console.log('[PWA] App installed');
-    });
-})();
-</script>
+<!-- ── PWA: Service Worker ── -->
+ <script>
+ (function () {
+     // Register service worker
+     if ('serviceWorker' in navigator) {
+         window.addEventListener('load', function () {
+             navigator.serviceWorker
+                 .register('/sw.js', { scope: '/' })
+                 .then(function (reg) {
+                     console.log('[SW] Registered:', reg.scope);
+                 })
+                 .catch(function (err) {
+                     console.warn('[SW] Registration failed:', err);
+                 });
+         });
+     }
+ })();
+ </script>
 </body>
 </html>

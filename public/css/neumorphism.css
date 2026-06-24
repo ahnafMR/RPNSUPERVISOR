@@ -1334,3 +1334,64 @@ a, button, .btn, .nav-link, .quick-action-btn {
     box-shadow: inset 3px 3px 7px var(--shadow-dark), inset -3px -3px 7px var(--shadow-light);
     transform: translateY(0);
 }
+/* PWA Install Button on Login Page */
+.pwa-install-wrap {
+    display: none;
+    margin: 24px auto 0;
+    max-width: 280px;
+}
+
+/* PWA Install Button on Dashboard */
+.pwa-install-wrap-dashboard {
+    display: none;
+    margin: 20px auto 0;
+    max-width: 280px;
+}
+#pwa-install-btn-dashboard {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 4px 4px 16px rgba(78,115,223,0.45);
+    -webkit-tap-highlight-color: transparent;
+}
+#pwa-install-btn-dashboard i { font-size: .9rem; }
+#pwa-install-btn-dashboard:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 20px rgba(78,115,223,0.55);
+}
+
+/* PWA Install Button on Login Page */
+#pwa-install-btn-login {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 4px 4px 16px rgba(78,115,223,0.45);
+    -webkit-tap-highlight-color: transparent;
+}
+#pwa-install-btn-login i { font-size: .9rem; }
+#pwa-install-btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 20px rgba(78,115,223,0.55);
+}

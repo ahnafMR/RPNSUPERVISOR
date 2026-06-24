@@ -230,21 +230,49 @@
                     </tr>
                 @endforelse
                 </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+</table>
+         </div>
+     </div>
+ </div>
+
+ {{-- PWA Install Button (visible on dashboard) --}}
+ <div class="pwa-install-wrap-dashboard" id="pwaInstallWrapDashboard" style="display:none;">
+     <button id="pwa-install-btn-dashboard" title="Install Aplikasi">
+         <i class="fas fa-download"></i>
+         Install Aplikasi
+     </button>
+ </div>
 
 @endsection
 
 @push('scripts')
 <script>
-// Chart.js global defaults — Poppins font & no border
+window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    var deferredPrompt = e;
+    var installBtn = document.getElementById('pwa-install-btn-dashboard');
+    var installWrap = document.getElementById('pwaInstallWrapDashboard');
+    if (installBtn) installBtn.style.display = 'flex';
+    if (installWrap) installWrap.style.display = 'block';
+    installBtn.addEventListener('click', function () {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function (choice) {
+            if (choice.outcome === 'accepted') {
+                console.log('[PWA] Installed');
+            }
+            deferredPrompt = null;
+            installBtn.style.display = 'none';
+            installWrap.style.display = 'none';
+        });
+    });
+});
+
+// Chart.js global defaults
 Chart.defaults.font.family = "'Poppins', sans-serif";
 Chart.defaults.font.size   = 12;
 Chart.defaults.color       = '#6b7a99';
 
-// Bar chart — Laporan per Bulan
+// Bar chart
 new Chart(document.getElementById('chartLaporan'), {
     type: 'bar',
     data: {
@@ -276,7 +304,7 @@ new Chart(document.getElementById('chartLaporan'), {
     }
 });
 
-// Doughnut chart — Temuan per Risiko
+// Doughnut chart
 new Chart(document.getElementById('chartTemuan'), {
     type: 'doughnut',
     data: {

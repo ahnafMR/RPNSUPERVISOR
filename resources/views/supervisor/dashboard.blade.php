@@ -331,9 +331,41 @@
                     </tr>
                 @endforelse
                 </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+</table>
+         </div>
+     </div>
+ </div>
+
+ {{-- PWA Install Button (visible on dashboard) --}}
+ <div class="pwa-install-wrap-dashboard" id="pwaInstallWrapDashboard" style="display:none;">
+     <button id="pwa-install-btn-dashboard" title="Install Aplikasi">
+         <i class="fas fa-download"></i>
+         Install Aplikasi
+     </button>
+ </div>
 
 @endsection
+
+@push('scripts')
+<script>
+window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    var deferredPrompt = e;
+    var installBtn = document.getElementById('pwa-install-btn-dashboard');
+    var installWrap = document.getElementById('pwaInstallWrapDashboard');
+    if (installBtn) installBtn.style.display = 'flex';
+    if (installWrap) installWrap.style.display = 'block';
+    installBtn.addEventListener('click', function () {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function (choice) {
+            if (choice.outcome === 'accepted') {
+                console.log('[PWA] Installed');
+            }
+            deferredPrompt = null;
+            installBtn.style.display = 'none';
+            installWrap.style.display = 'none';
+        });
+    });
+});
+</script>
+@endpush

@@ -158,6 +158,50 @@
     </a>
 </div>
 
+{{-- PWA Install Button --}}
+<div class="pwa-install-wrap" id="pwaInstallWrapLogin">
+    <button id="pwa-install-btn-login" title="Install Aplikasi">
+        <i class="fas fa-download"></i>
+        Install Aplikasi
+    </button>
+</div>
+
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
+            .then(function (reg) { console.log('[SW] Registered:', reg.scope); })
+            .catch(function (err) { console.warn('[SW] Failed:', err); });
+    });
+}
+
+var deferredPromptLogin = null;
+var installBtnLogin = document.getElementById('pwa-install-btn-login');
+var installWrapLogin = document.getElementById('pwaInstallWrapLogin');
+
+window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferredPromptLogin = e;
+    if (installBtnLogin) installBtnLogin.style.display = 'flex';
+    if (installWrapLogin) installWrapLogin.style.display = 'block';
+});
+
+if (installBtnLogin) {
+    installBtnLogin.addEventListener('click', function () {
+        if (!deferredPromptLogin) return;
+        deferredPromptLogin.prompt();
+        deferredPromptLogin.userChoice.then(function (choice) {
+            if (choice.outcome === 'accepted') {
+                console.log('[PWA] Installed');
+            }
+            deferredPromptLogin = null;
+            installBtnLogin.style.display = 'none';
+            if (installWrapLogin) installWrapLogin.style.display = 'none';
+        });
+    });
+}
+</script>
+
 <script>
 function togglePassword() {
     const pw = document.getElementById('password');
