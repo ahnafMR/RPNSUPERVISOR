@@ -1183,33 +1183,51 @@ a, button, .btn, .nav-link, .quick-action-btn {
 
 .mob-nav-item.mob-nav-fab::after { display: none; }
 
+/* ============================================================
+   FLOATING ACTION BUTTONS (Install + WhatsApp)
+   ============================================================ */
+.floating-actions {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 1040;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
 /* PWA install button (hidden until prompt fires) */
 .pwa-install-wrap {
-  display: none; /* shown by JS */
-  position: fixed;
-  bottom: 76px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1041;
+    display: none; /* shown by JS */
+    position: static;
+    bottom: auto;
+    left: auto;
+    transform: none;
 }
 #pwa-install-btn {
-  display: none; /* shown by JS when prompt is available */
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-  color: #fff;
-  border: none;
-  border-radius: 30px;
-  padding: 10px 22px;
-  font-family: 'Poppins', sans-serif;
-  font-size: .82rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 4px 4px 16px rgba(78,115,223,0.45);
-  white-space: nowrap;
-  -webkit-tap-highlight-color: transparent;
+    display: none; /* shown by JS when prompt is available */
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 22px;
+    font-family: 'Poppins', sans-serif;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 4px 4px 16px rgba(78,115,223,0.45);
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    transition: var(--transition);
 }
 #pwa-install-btn i { font-size: .9rem; }
+#pwa-install-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 20px rgba(78,115,223,0.55);
+}
 
 /* Utility: allows form to participate in flex layout without a wrapping box */
 .d-contents { display: contents; }
@@ -1271,13 +1289,11 @@ a, button, .btn, .nav-link, .quick-action-btn {
     color: #fff !important;
 }
 
-/* ============================================================
-   FLOATING WHATSAPP BUTTON (all pages, bottom-right)
-   ============================================================ */
+/* Floating WhatsApp button */
 .float-wa-btn {
-    position: fixed;
-    bottom: 28px;
-    right: 24px;
+    position: static;
+    bottom: auto;
+    right: auto;
     z-index: 1035;
     display: flex;
     align-items: center;
@@ -1286,7 +1302,7 @@ a, button, .btn, .nav-link, .quick-action-btn {
     color: #fff !important;
     text-decoration: none !important;
     border-radius: 30px;
-    padding: 12px 18px 12px 14px;
+    padding: 10px 18px 10px 12px;
     box-shadow: 4px 4px 18px rgba(37,211,102,0.45),
                 -2px -2px 8px rgba(255,255,255,0.3);
     font-family: 'Poppins', sans-serif;
@@ -1296,7 +1312,7 @@ a, button, .btn, .nav-link, .quick-action-btn {
     -webkit-tap-highlight-color: transparent;
 }
 .float-wa-btn:hover {
-    transform: translateY(-3px) scale(1.03);
+    transform: translateY(-2px) scale(1.03);
     box-shadow: 6px 6px 22px rgba(37,211,102,0.55);
     color: #fff !important;
 }
@@ -1308,12 +1324,10 @@ a, button, .btn, .nav-link, .quick-action-btn {
     white-space: nowrap;
 }
 
-/* On mobile — shift up above bottom-nav, collapse to icon only */
+/* On mobile — collapse to icon only */
 @media (max-width: 767.98px) {
     .float-wa-btn {
-        bottom: calc(76px + env(safe-area-inset-bottom));
-        right: 16px;
-        padding: 12px;
+        padding: 10px 12px;
         border-radius: 50%;
     }
     .float-wa-label { display: none; }

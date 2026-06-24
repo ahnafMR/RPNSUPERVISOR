@@ -338,26 +338,28 @@
 
     </nav>
 
-{{-- PWA floating install button (hidden - PWA install only on login/dashboard) --}}
-     <div class="pwa-install-wrap" id="pwaInstallWrap" style="display:none !important;">
-         <button id="pwa-install-btn" title="Install Aplikasi">
-             <i class="fas fa-download"></i>
-             Install Aplikasi
-         </button>
-     </div>
-    {{-- ===================== /MOBILE BOTTOM NAVIGATION ===================== --}}
+    {{-- Floating action buttons (Install + WhatsApp) --}}
+    <div class="floating-actions">
+        {{-- PWA floating install button (hidden - PWA install only on login/dashboard) --}}
+        <div class="pwa-install-wrap" id="pwaInstallWrap" style="display:none !important;">
+            <button id="pwa-install-btn" title="Install Aplikasi">
+                <i class="fas fa-download"></i>
+                Install Aplikasi
+            </button>
+        </div>
 
-    {{-- ── Floating WhatsApp Support Button (always visible) ── --}}
-    <a href="https://wa.me/6289508770908?text=Halo%2C%20saya%20butuh%20bantuan%20terkait%20aplikasi%20RPN%20Supervisor."
-       target="_blank" rel="noopener"
-       class="float-wa-btn" title="Hubungi Support via WhatsApp"
-       aria-label="WhatsApp Support">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.526 5.845L.057 23.522a.5.5 0 0 0 .615.611l5.78-1.516A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.673-.525-5.188-1.435l-.372-.22-3.853 1.011 1.029-3.752-.242-.386A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-        </svg>
-        <span class="float-wa-label">Ada Masalah?</span>
-    </a>
+        {{-- Floating WhatsApp Support Button (always visible) --}}
+        <a href="https://wa.me/6289508770908?text=Halo%2C%20saya%20butuh%20bantuan%20terkait%20aplikasi%20RPN%20Supervisor."
+           target="_blank" rel="noopener"
+           class="float-wa-btn" title="Hubungi Support via WhatsApp"
+           aria-label="WhatsApp Support">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.526 5.845L.057 23.522a.5.5 0 0 0 .615.611l5.78-1.516A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.673-.525-5.188-1.435l-.372-.22-3.853 1.011 1.029-3.752-.242-.386A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+            <span class="float-wa-label">Ada Masalah?</span>
+        </a>
+    </div>
 
 </div><!-- /.wrapper -->
 
