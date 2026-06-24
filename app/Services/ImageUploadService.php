@@ -25,7 +25,7 @@ class ImageUploadService
     {
         $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
 
-        return $file->storeAs($directory, $filename, 'public');
+        return $file->storeAs($directory, $filename, ['disk' => 'public']);
     }
 
     public function storeBase64(string $base64, string $directory): string

@@ -11,6 +11,7 @@ use App\Services\ImageUploadService;
 use App\Services\NumberGeneratorService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LaporanController extends Controller
 {
@@ -73,10 +74,16 @@ class LaporanController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            foreach ($request->file('foto') as $file) {
+            $files = $request->file('foto');
+            Log::info('Laporan foto upload', ['count' => count($files), 'laporan_id' => $laporan->id]);
+            foreach ($files as $file) {
                 $path = $this->imageUpload->storeSingle($file, 'laporan');
-                $laporan->fotoLaporans()->create(['foto' => $path]);
+                Log::info('Foto stored', ['path' => $path, 'original' => $file->getClientOriginalName()]);
+                $record = $laporan->fotoLaporans()->create(['foto' => $path]);
+                Log::info('Foto record created', ['id' => $record->id, 'foto' => $record->foto]);
             }
+        } else {
+            Log::info('Laporan has no foto files', ['laporan_id' => $laporan->id]);
         }
 
         $this->auditLog->log('create', 'Membuat laporan: ' . $laporan->nomor_laporan, $laporan);
