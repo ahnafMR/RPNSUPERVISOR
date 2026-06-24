@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <table class="table table-bordered">
                     <tr><th>Kode</th><td>{{ $lokasi->kode_lokasi }}</td></tr>
                     <tr><th>Nama</th><td>{{ $lokasi->nama_lokasi }}</td></tr>

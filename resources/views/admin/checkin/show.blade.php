@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-8">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <table class="table table-bordered">
                     <tr><th>Supervisor</th><td>{{ $checkin->user->name }}</td></tr>
                     <tr><th>Lokasi</th><td>{{ $checkin->lokasi->nama_lokasi }}</td></tr>

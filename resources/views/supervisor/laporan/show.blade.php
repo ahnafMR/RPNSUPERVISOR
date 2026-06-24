@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <table class="table table-bordered">
                     <tr><th>No. Laporan</th><td>{{ $laporan->nomor_laporan }}</td></tr>
                     <tr><th>Lokasi</th><td>{{ $laporan->lokasi->nama_lokasi }}</td></tr>

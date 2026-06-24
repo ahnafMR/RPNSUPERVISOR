@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <table class="table table-bordered">
                     <tr><th>Kode</th><td>{{ $temuan->kode_temuan }}</td></tr>
                     <tr><th>Judul</th><td>{{ $temuan->judul_temuan }}</td></tr>
