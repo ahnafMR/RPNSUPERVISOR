@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header"><h3 class="card-title">Foto Selfie</h3></div>
             <div class="card-body text-center">
-                <img src="{{ asset('storage/' . $checkin->foto_selfie) }}" class="img-fluid rounded" alt="Selfie">
+                <img src="{{ asset('storage/app/public/selfie' . $checkin->foto_selfie) }}" class="img-fluid rounded" alt="Selfie">
             </div>
         </div>
     </div>

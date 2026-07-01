@@ -24,7 +24,7 @@
                 <h5>Foto Dokumentasi</h5>
                 <div class="row">
                     @foreach($laporan->fotoLaporans as $foto)
-                        <div class="col-12 col-md-3 mb-2"><img src="{{ asset('storage/' . $foto->foto) }}" class="img-fluid rounded"></div>
+                        <div class="col-12 col-md-3 mb-2"><img src="{{ asset('storage/app/public/laporan' . $foto->foto) }}" class="img-fluid rounded"></div>
                     @endforeach
                 </div>
                 @endif
